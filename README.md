@@ -1,57 +1,68 @@
-**Knapsack Problem: Genetic Algorithm vs. Brute Force**
+# Knapsack Problem with Genetic Algorithm and Brute Force
 
-This project explores two different approaches to solving the classic Knapsack Problem: a Genetic Algorithm and a Brute Force method. The goal is to select a combination of items with the maximum total value that can fit into a knapsack with a limited weight capacity.
+## Project Description
 
-**Project Structure**
+This project provides a Python implementation of two different methods for solving the classic **Knapsack Problem**: a **Genetic Algorithm** and a **Brute Force** search. The goal is to find the most valuable combination of items that can fit into a knapsack without exceeding its weight capacity.
 
-The repository contains the following key files:
+---
 
-for_students.py: The main implementation of the Genetic Algorithm.
+## Features
 
-brute_force.py: An implementation of the Brute Force approach, which guarantees an optimal solution but is much slower.
+-   **Genetic Algorithm Implementation:**
+    -   **Population-based optimization**: Evolves a population of potential solutions over multiple generations.
+    -   **Fitness Function**: Evaluates each solution based on the total value of items. Solutions that exceed the knapsack's capacity are penalized with a fitness score of zero.
+    -   **Roulette Wheel Selection**: Selects parents for the next generation, giving a higher probability to fitter individuals.
+    -   **One-Point Crossover**: Creates new offspring by combining genetic information from two parents.
+    -   **Mutation**: Introduces random changes into the population to maintain genetic diversity and explore the solution space.
+    -   **Elitism**: Preserves the best solution from the current generation, ensuring it is not lost in subsequent generations.
+-   **Brute Force Implementation:**
+    -   **Exhaustive Search**: Systematically evaluates every possible combination of items.
+    -   **Guaranteed Optimality**: Always finds the absolute best solution to the problem.
+    -   Serves as a benchmark to evaluate the performance of the Genetic Algorithm.
+-   **Data Handling & Visualization:**
+    -   Loads item data (name, weight, value) from `.csv` files.
+    -   Includes both a small and a large dataset for testing.
+    -   Visualizes the Genetic Algorithm's performance and fitness progression over generations using `matplotlib`.
 
-data.py: A helper script to load item data from CSV files.
+---
 
-knapsack-small.csv: A small dataset for quick testing and debugging.
+## Project Structure
 
-knapsack-big.csv: A larger and more complex dataset to demonstrate the effectiveness of the Genetic Algorithm.
+-   **`for_students.py`**: The main script that runs the **Genetic Algorithm**. It handles the initialization, evolution, and visualization of the results.
+-   **`brute_force.py`**: The script that implements the **Brute Force** approach to find the optimal solution.
+-   **`data.py`**: A helper module responsible for loading the datasets from the CSV files using `pandas`.
+-   **`knapsack-small.csv`**: A small dataset for quick testing and validation.
+-   **`knapsack-big.csv`**: A larger dataset designed to test the performance and scalability of the algorithms.
+-   **`requirements.txt`**: A file listing the libraries required to run the project.
 
-**Algorithms**
+---
 
-**Genetic Algorithm**
+## Installation
 
-The Genetic Algorithm is a heuristic inspired by the process of natural selection. It works with a population of potential solutions and evolves them over several generations to find a high-quality solution.
+1.  Clone the repository to your local machine:
+    ```bash
+    git clone https://github.com/Skan404/Knapsack-Genetic-Algorithm
+    cd Knapsack-Genetic-Algorithm
+    ```
 
-The implementation in for_students.py includes the following key steps:
+2.  Install the required dependencies from `requirements.txt`:
+    ```bash
+    pip install pandas matplotlib
+    ```
 
-Initialization: A random population of solutions (individuals) is created. Each individual is a binary vector representing the presence or absence of an item in the knapsack.
+---
 
-Fitness Evaluation: Each individual's fitness is calculated based on the total value of the items it represents. If the total weight exceeds the knapsack's capacity, the fitness is zero.
+## Usage
 
-Selection: Parents are selected from the population using roulette wheel selection, where individuals with higher fitness have a greater chance of being chosen.
+To run the project and compare the two approaches, execute the following commands in the main project directory.
 
-Crossover: Selected parents are combined using a one-point crossover to create new offspring.
+1.  To run the **Genetic Algorithm**:
+    ```bash
+    python for_students.py
+    ```
 
-Mutation: A random bit in the offspring's chromosome is flipped to introduce diversity.
-
-Elitism: The best individual from the current generation is carried over to the next to ensure the best-found solution is not lost.
-
-The algorithm's progress and the fitness of the population over generations are visualized using matplotlib.
-
-**Brute Force**
-
-The Brute Force algorithm, implemented in brute_force.py, systematically checks every possible combination of items to find the absolute best solution. While it guarantees optimality, its computational complexity makes it impractical for large datasets.
-
-**How to Run**
-
-Ensure you have Python and the following libraries installed:
-
-pandas, matplotlib
-
-To run the Genetic Algorithm:
-
-python for_students.py
-
-To run the Brute Force algorithm (note: may be very slow with knapsack-big.csv):
-
-python brute_force.py
+2.  To run the **Brute Force** algorithm:
+    ```bash
+    python brute_force.py
+    ```
+    *(**Warning**: Running the Brute Force script with the `knapsack-big.csv` dataset will be extremely time-consuming due to its high computational complexity.)*
